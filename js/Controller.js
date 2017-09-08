@@ -1,80 +1,64 @@
-var _gaq = _gaq || [];
+/*!
+ * Controller.js
+ */
 
-$(document).ready(function(){
-  var widthOffset = 345;
-  var heightOffset = 35
+var d;
 
-  var d = new DataConverter('converter');
+$(document).ready(function() {
+  d = new DataConverter('converter');
 
-  var sidebar = $('#header');
+  d.init();
 
-  var win = $(window);
-  var w = win.width() - widthOffset;
-  var h = win.height() - heightOffset;
+  $('.settings-element').change(updateSettings);
 
-  d.create(w,h);
+  function updateSettings(evt) {
 
-  $(".settingsElement").change(updateSettings);
+    if (evt) ga('send', 'event', 'Settings', evt.currentTarget.id);
 
-  $(window).bind('resize',function() {  
+    d.includeWhiteSpace = $('#includeWhiteSpaceCB').prop('checked');
+    d.includeHtmlClass = $('#includeHtmlClassCB').prop('checked');
 
-      w = win.width() - widthOffset;
-      h = win.height() - heightOffset;
-      d.resize(w,h);
-      sidebar.height(h);
-
-    });
-
-
-  function updateSettings (evt) {
-    
-    if (evt) {
-      _gaq.push(['_trackEvent', 'Settings',evt.currentTarget.id ]);
-    };
-
-    d.includeWhiteSpace = $('#includeWhiteSpaceCB').attr('checked');
-    
     if (d.includeWhiteSpace) {
-      $("input[name=indentType]").removeAttr("disabled");
-      var indentType = $('input[name=indentType]:checked').val();
-      if (indentType === "tabs") {
-        d.indent = "\t";
-      } else if (indentType === "spaces") {
-        d.indent = "  "
+      $('input[name=indentType]').removeAttr('disabled');
+      switch ($('input[name=indentType]:checked').val()) {
+        case 'spaces':
+          d.indent = '  ';
+          break;
+        case 'tabs':
+          d.indent = '\t';
+          break;
       }
     } else {
-      $("input[name=indentType]").attr("disabled", "disabled");
+      $('input[name=indentType]').prop('disabled', true);
     }
 
-    d.headersProvided = $('#headersProvidedCB').attr('checked');
+    d.headersProvided = $('#headersProvidedCB').prop('checked');
 
     if (d.headersProvided) {
-      $("input[name=headerModifications]").removeAttr("disabled");
-
-      var hm = $('input[name=headerModifications]:checked').val();
-      if (hm === "downcase") {
-        d.downcaseHeaders = true;
-        d.upcaseHeaders = false;
-      } else if (hm === "upcase") {
-        d.downcaseHeaders = false;
-        d.upcaseHeaders = true;
-      } else if (hm === "none") {
-        d.downcaseHeaders = false;
-        d.upcaseHeaders = false;
+      $('input[name=headerModifications]').removeAttr('disabled');
+      switch ($('input[name=headerModifications]:checked').val()) {
+        case 'none':
+          d.downcaseHeaders = false;
+          d.upcaseHeaders = false;
+          break;
+        case 'downcase':
+          d.downcaseHeaders = true;
+          d.upcaseHeaders = false;
+          break;
+        case 'upcase':
+          d.downcaseHeaders = false;
+          d.upcaseHeaders = true;
+          break;
       }
     } else {
-      $("input[name=headerModifications]").attr("disabled", "disabled");
+      $('input[name=headerModifications]').prop('disabled', true);
     }
-    
+
     d.delimiter = $('input[name=delimiter]:checked').val();
     d.decimal = $('input[name=decimal]:checked').val();
-    
-    d.useUnderscores = true;
-    
     d.convert();
-  };
+  }
 
   updateSettings();
-  
-})
 
+});

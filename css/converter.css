@@ -1,174 +1,251 @@
-/*
-Copyright (c) 2010, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http://developer.yahoo.com/yui/license.html
-version: 3.1.2
-build: 56
-*/
-html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+/* cssreset-min.css
+ * YUI 3.18.1 (build f7e7bcb)
+ * Copyright 2014 Yahoo! Inc. All rights reserved.
+ * Licensed under the BSD License.
+ * http: //yuilibrary.com/license/
+ */
+html{color: #000;background: #fff}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin: 0;padding: 0}table{border-collapse: collapse;border-spacing: 0}fieldset,img{border: 0}address,caption,cite,code,dfn,em,strong,th,var{font-style: normal;font-weight: normal}ol,ul{list-style: none}caption,th{text-align: left}h1,h2,h3,h4,h5,h6{font-size: 100%;font-weight: normal}q: before,q: after{content: ''}abbr,acronym{border: 0;font-variant: normal}sup{vertical-align: text-top}sub{vertical-align: text-bottom}input,textarea,select{font-family: inherit;font-size: inherit;font-weight: inherit;*font-size: 100%}legend{color: #000}
 
-
-/*
-Mr. Data Converter styles
-*/
-
-
-html {
-	font-family: Helvetica, Arial;
-	background: #141414 url('../images/background.png') no-repeat;
-}
-
-body {
+/*** Base Layout ***/
+.hbox, .vbox {
   overflow: hidden;
 }
-
-#base {
-  padding: 15px;
+.hbox {
+  width: 100%;
+  clear: both;
+}
+.hbox > * {
+  height: 100%;
+  float: left;
+  overflow: auto;
+}
+.vbox > * {
+  display: block;
+}
+.panel {
   position: relative;
+  padding: 1rem;
 }
 
+/*** Mr. Data Converter ***/
+html, body {
+  height: 100%;
+}
+html {
+  background: #141414 url('../images/background.jpg') no-repeat;
+  font-family: Calibri, Helvetica, sans-serif;
+}
+body {
+  margin: 0;
+}
+body * {
+  box-sizing: border-box;
+}
+a[href] {
+  text-decoration: none;
+}
+a[href]: hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+code {
+  font-size: 90%;
+}
+h1 {
+  color: #dedede;
+  font: bold 44px Cambria, Palatino, serif;
+  line-height: 1;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 3px #000;
+}
+hr {
+  height: 1px;
+  background: #ccc;
+  border: 0;
+}
+input[type=checkbox], input[type=radio] {
+  vertical-align: middle;
+}
+input[type=radio] {
+  margin-left: 0.5rem;
+}
+p {
+  font-size: 16px;
+}
+#base {
+  min-width: 586px;
+  height: 100%;
+}
 
-
-
-/*header*/
-
+/*** Header ***/
 #header {
-	
-	color: #FFF;
-	width: 300px;
-	overflow: auto;
+  width: 20%;
+  min-width: 254px;
+  color: #fff;
 }
 #header a {
-	color: #99FFFF;
-/*  opacity: 0.7;*/
+  color: #4078c0;
 }
-
-#header p {
-	color: #CCC;
-}
-
-#description p {
-	margin-bottom: 18px;
-}
-
 #header h3 {
-  font-size: 12px;
-  margin: 15px 0 10px 0;
-  padding: 15px 0 0 0;
-  border-top: solid 1px #CCC;
+  margin: 1rem 0;
+  text-shadow: 0 1px 0 #000;
   text-transform: uppercase;
 }
-
-h1 {
-  color: #DEDEDE;
-  font-family: palatino, Georgia;
-	font-size: 40px;
-	line-height: 40px;
-	font-weight: bold;
-	margin-bottom: 8px;
-	text-shadow: 1px 1px 3px #000;
+#header p {
+  color: #ccc;
+}
+#description p {
+  margin-bottom: 1rem;
 }
 
-p {
-	font-size: 15px;
-	line-height: 22px;
+/*** Settings ***/
+#settings label {
+  font-weight: initial;
+  white-space: nowrap;
 }
-
-/*settings*/
-#settings {
-
-}
-
-
-#settings h5 {
-  font-size: 13px;
-  line-height: 24px;
-}
-
 #settings p {
-  font-size: 13px;
-  line-height: 24px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 26px;
+}
+#settings .settings-group p {
+  padding-left: 1rem;
 }
 
-
-#settings .settingsGroup p {
-  padding-left: 20px;
+/*** Converter ***/
+.group-header {
+  width: 100%;
+  background: #5f255c url('../images/header_gradient.png');
+  background-size: auto 100%;
+  color: #fff;
+  padding-top: 0;
+  padding-bottom: 0;
 }
-
-/*converter*/
-
-#converter {
-	position: absolute;
-	top: 15px;
-	left: 330px;
-	border-color:#000000 #666666 #666666 #000000;
-  border-style:solid;
-  border-width:2px;
+.group-header a {
+  color: #f6f;
 }
-
-
-p.dataHeaders{
-	height: 30px;
-	padding: 15px 15px 10px;
+.group-header .subhead {
+  font-size: 14px;
+  margin-left: 0.5rem;
+  opacity: 0.7;
 }
-
-.textInputs {
-  
-  background-color: #C9B7C7;
+.group-headline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-input {
+  width: 100%;
+  background-color: #c9b7c7;
   border: none;
-  color: #664D63;
-  font-family: monospace;
+  -moz-box-shadow: 1px 1px 10px #333 inset;
+  -webkit-box-shadow: 1px 1px 10px #333 inset;
+  box-shadow: 1px 1px 10px #333 inset;
+  color: #664d63;
+  font-family: Consolas, Courier New, monospace;
   font-size: 12px;
-  height: 300px;
   line-height: 18px;
   padding: 10px;
-  text-shadow: #DED4DD 0px 1px 0px;
-  -webkit-box-shadow: #333 1px 1px 10px inset;
-  -moz-box-shadow: #333 1px 1px 10px inset;
+  /*text-shadow: 0 1px 0 #ded4dd;*/
+}
+#converter {
+  float: none;
+}
+#converter > .wrapper {
+  height: 100%;
+}
+#converter > .wrapper > * {
+  display: none;
+}
+#converter.loaded > .wrapper {
+  min-height: 192px;
+  border-color: #000 #666 #666 #000;
+  border-style: solid;
+  border-width: 2px;
+}
+#converter.loaded > .wrapper > * {
+  display: block;
+}
+#input-header {
+  height: 43px;
+  line-height: 43px;
+}
+#data-input {
+  height: calc(50% - 43px);
+  min-height: 43px;
+}
+#output-header {
+  height: 47px;
+  line-height: 47px;
+}
+#data-output {
+  height: calc(50% - 47px);
+  min-height: 47px;
+}
+#data-selector {
+  margin-left: 0.5rem;
+  padding: 2px 0;
 }
 
-
-.groupHeader{
-  width: 100%;
-  color: #FFF;
-  height: 45px;
-  background-color:#5F255C;
-  background-image: url('../images/header_gradient.png');
+/*** Loading Animation (Spinner) ***/
+/* Based on http: //projects.lukehaas.me/css-loaders/ */
+.loader {
+  position: relative;
+  height: 100%;
+  display: block!important;
+  overflow: hidden;
+  text-align: center;
 }
-
-
-p.groupHeadline {
-  padding: 10px;
+.loader > .loader-text, .loader > .loader-icon {
+  pointer-events: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
-.groupHeader span.subhead {
-  opacity: 0.7;
-  font-size: 12px;
+.loader > .loader-text {
+  position: absolute;
+  top: 50%;
+  color: #fff;
+  font-size: 14px;
+  margin-top: -10px;
 }
-
-.groupHeader a {
-  color: #FF66FF;
+.loader > .loader-icon {
+  position: absolute;
+  top: 50%;
+  width: 6rem;
+  height: 6rem;
+  -webkit-animation: load 1.1s infinite linear;
+  animation: load 1.1s infinite linear;
+  border-top: 8px solid rgba(255, 255, 255, 0.1);
+  border-right: 8px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 8px solid rgba(255, 255, 255, 0.1);
+  border-left: 8px solid #6a2b66;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: -3rem;
+  margin-left: -20px;
+  -ms-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
-
-
-#outputGroup {
-
+@-webkit-keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
-
-#dataInput {
-	
-}
-
-#dataOutput {
-
-	
-}
-#dataSelector {
-	width: 200px;
-	line-height: 22px;
-	font-size: 16px;
-	padding: 2px 0px;
-}
-
-#dataSelector option {
-
+@keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
